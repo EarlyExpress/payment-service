@@ -53,3 +53,18 @@ logging:
   level:
     com.early_express: DEBUG
     org.springframework.security: DEBUG
+
+# 토스페이먼츠 설정
+toss:
+  secret-key: test_sk_P9BRQmyarYYkpPqm5a7prJ07KzLN # 환경변수에서 토스 시크릿 키 읽기
+  api:
+    url: https://api.tosspayments.com  # 토스 API URL
+    timeout:
+      connect: 10000  # 연결 타임아웃 (ms)
+      read: 30000     # 읽기 타임아웃 (ms)
+
+gemini:
+  api:
+    key: test-key
+    model: gemini-2.5-flash
+    base-url: https://generativelanguage.googleapis.com

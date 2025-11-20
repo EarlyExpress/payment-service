@@ -63,6 +63,16 @@ spring:
       ack-mode: manual  # 수동 승인 모드 (메시지 처리 보장)
       concurrency: 3  # 동시 처리 리스너 수
 
+# 토스페이먼츠 설정
+toss:
+  secret-key: ${TOSS}  # 환경변수에서 토스 시크릿 키 읽기
+  api:
+    url: https://api.tosspayments.com  # 토스 API URL
+    timeout:
+      connect: 10000  # 연결 타임아웃 (ms)
+      read: 30000     # 읽기 타임아웃 (ms)
+
+
 # ===== 서버 포트 설정 =====
 server:
   port: ${APP_PORT:4000}  # 서비스 포트 (환경변수로 오버라이드 가능)
