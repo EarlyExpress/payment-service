@@ -1,6 +1,8 @@
 package com.early_express.payment_service.global.presentation.dto;
 
 import com.early_express.payment_service.global.common.dto.PageInfo;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.util.Collections;
@@ -11,7 +13,10 @@ public class PageResponse<T> {
     private final List<T> content;
     private final PageInfo pageInfo;
 
-    private PageResponse(List<T> content, PageInfo pageInfo) {
+    @JsonCreator
+    private PageResponse(
+            @JsonProperty("content") List<T> content,
+            @JsonProperty("pageInfo") PageInfo pageInfo) {
         validatePageInfo(pageInfo);
         this.content = content != null ? content : Collections.emptyList();
         this.pageInfo = pageInfo;
