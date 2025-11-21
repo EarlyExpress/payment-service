@@ -5,7 +5,7 @@ import com.early_express.payment_service.domain.payment.domain.exception.*;
 import com.early_express.payment_service.domain.payment.domain.model.Payment;
 import com.early_express.payment_service.domain.payment.domain.model.vo.*;
 import com.early_express.payment_service.domain.payment.domain.repository.PaymentRepository;
-import com.early_express.payment_service.domain.payment.infrastructure.client.toss.TossPaymentsClient;
+import com.early_express.payment_service.domain.payment.domain.client.TossPaymentsClient;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelRequest;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelResponse;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossPaymentVerifyResponse;
