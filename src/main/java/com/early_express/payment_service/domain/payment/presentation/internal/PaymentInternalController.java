@@ -2,8 +2,6 @@ package com.early_express.payment_service.domain.payment.presentation.internal;
 
 import com.early_express.payment_service.domain.payment.application.service.PaymentService;
 import com.early_express.payment_service.domain.payment.domain.model.Payment;
-import com.early_express.payment_service.domain.payment.presentation.internal.dto.request.PaymentCancelInternalRequest;
-import com.early_express.payment_service.domain.payment.presentation.internal.dto.response.PaymentCancelInternalResponse;
 import com.early_express.payment_service.domain.payment.presentation.internal.dto.request.PaymentVerificationInternalRequest;
 import com.early_express.payment_service.domain.payment.presentation.internal.dto.response.PaymentVerificationInternalResponse;
 import jakarta.validation.Valid;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Payment Internal API Controller
  * 다른 서비스(Order Service)에서 호출하는 내부 API
- *
  * Endpoint Pattern: /v1/payment/internal/all/{resource}
  */
 @Slf4j
@@ -29,7 +26,6 @@ public class PaymentInternalController {
     /**
      * 결제 검증 및 등록 (Saga Step 2)
      * POST /v1/payment/internal/all/verify-and-register
-     *
      * Order Service에서 호출
      * - PG사 결제 검증
      * - Payment 엔티티 생성
@@ -69,43 +65,6 @@ public class PaymentInternalController {
 
         log.info("결제 검증 완료 - paymentId: {}, orderId: {}",
                 payment.getIdValue(), payment.getOrderId());
-
-        return ResponseEntity.ok(response);
-    }
-
-    /**
-     * 결제 취소 (보상 트랜잭션)
-     * POST /v1/payment/internal/all/cancel
-     *
-     * Order Service에서 호출
-     * - 전액 환불
-     * - 성공 시: PaymentRefundedEvent 발행
-     */
-    @PostMapping("/cancel")
-    public ResponseEntity<PaymentCancelInternalResponse> cancelPayment(
-            @Valid @RequestBody PaymentCancelInternalRequest request) {
-
-        log.info("결제 취소 요청 수신 - paymentId: {}, orderId: {}",
-                request.getPaymentId(), request.getOrderId());
-
-        Payment payment = paymentService.cancelPayment(
-                request.getPaymentId(),
-                request.getOrderId(),
-                request.getCancelReason()
-        );
-
-        PaymentCancelInternalResponse response = PaymentCancelInternalResponse.builder()
-                .success(true)
-                .paymentId(payment.getIdValue())
-                .orderId(payment.getOrderId())
-                .canceledAmount(payment.getRefundedAmount())
-                .pgRefundId(payment.getPgInfo().getPgRefundId())
-                .canceledAt(payment.getRefundedAt())
-                .message("결제가 취소되었습니다.")
-                .build();
-
-        log.info("결제 취소 완료 - paymentId: {}, refundAmount: {}",
-                payment.getIdValue(), payment.getRefundedAmount());
 
         return ResponseEntity.ok(response);
     }
