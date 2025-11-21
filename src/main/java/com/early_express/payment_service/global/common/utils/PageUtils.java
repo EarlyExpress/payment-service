@@ -22,7 +22,6 @@ public class PageUtils {
      */
     public static <T> PageResponse<T> toPageResponse(Page<T> page) {
         validatePage(page);
-
         PageInfo pageInfo = createPageInfo(page);
         return PageResponse.of(page.getContent(), pageInfo);
     }

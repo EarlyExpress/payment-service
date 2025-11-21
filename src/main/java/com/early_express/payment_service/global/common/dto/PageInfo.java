@@ -1,5 +1,7 @@
 package com.early_express.payment_service.global.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -21,8 +23,15 @@ public class PageInfo {
     private final List<SortInfo> sort;
 
     @Builder
-    private PageInfo(int page, int size, long totalElements,
-                     int totalPages, int numberOfElements, List<SortInfo> sort) {
+    @JsonCreator  // Jackson 직렬화를 위해 추가
+    private PageInfo(
+            @JsonProperty("page") int page,
+            @JsonProperty("size") int size,
+            @JsonProperty("totalElements") long totalElements,
+            @JsonProperty("totalPages") int totalPages,
+            @JsonProperty("numberOfElements") int numberOfElements,
+            @JsonProperty("sort") List<SortInfo> sort) {
+
         validateParameters(page, size, totalElements, totalPages);
 
         this.page = page;
