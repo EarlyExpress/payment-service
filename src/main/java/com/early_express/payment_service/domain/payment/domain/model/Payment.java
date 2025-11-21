@@ -90,7 +90,7 @@ public class Payment {
             PayeeInfo payeeInfo) {
 
         return Payment.builder()
-                .id(PaymentId.create())
+                .id(null)
                 .orderId(orderId)
                 .amountInfo(PaymentAmountInfo.of(amount))
                 .pgInfo(pgInfo)
