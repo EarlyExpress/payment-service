@@ -3,6 +3,7 @@ package com.early_express.payment_service.domain.payment.infrastructure.persiste
 import com.early_express.payment_service.domain.payment.domain.model.Payment;
 import com.early_express.payment_service.domain.payment.domain.model.PaymentStatus;
 import com.early_express.payment_service.domain.payment.domain.model.vo.*;
+import com.early_express.payment_service.global.common.utils.UuidUtils;
 import com.early_express.payment_service.global.infrastructure.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -160,7 +161,7 @@ public class PaymentEntity extends BaseEntity {
      */
     public static PaymentEntity fromDomain(Payment payment) {
         return PaymentEntity.builder()
-                .id(payment.getIdValue())
+                .id(UuidUtils.generate())
                 .orderId(payment.getOrderId())
                 .amount(payment.getAmountInfo().getAmount())
                 .refundedAmount(payment.getAmountInfo().getRefundedAmount())
