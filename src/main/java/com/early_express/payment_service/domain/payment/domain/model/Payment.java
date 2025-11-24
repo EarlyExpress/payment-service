@@ -47,6 +47,14 @@ public class Payment {
     // 환불 정보
     private LocalDateTime refundedAt;
     private String refundReason;
+    
+    // 베이스엔티티 매핑용
+    private String createdBy;
+    private LocalDateTime updatedAt;
+    private String updatedBy;
+    private LocalDateTime deletedAt;
+    private String deletedBy;
+    private boolean isDeleted;
 
     @Builder
     private Payment(
