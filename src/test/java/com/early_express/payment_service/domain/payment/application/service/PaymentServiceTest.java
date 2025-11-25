@@ -1,6 +1,6 @@
 package com.early_express.payment_service.domain.payment.application.service;
 
-import com.early_express.payment_service.domain.payment.domain.client.TossPaymentsClient;
+import com.early_express.payment_service.domain.payment.infrastructure.client.toss.TossPaymentsClient;
 import com.early_express.payment_service.domain.payment.domain.exception.PaymentException;
 import com.early_express.payment_service.domain.payment.domain.exception.PaymentVerificationException;
 import com.early_express.payment_service.domain.payment.domain.exception.RefundException;
@@ -11,7 +11,6 @@ import com.early_express.payment_service.domain.payment.domain.repository.Paymen
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelRequest;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelResponse;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossPaymentVerifyResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

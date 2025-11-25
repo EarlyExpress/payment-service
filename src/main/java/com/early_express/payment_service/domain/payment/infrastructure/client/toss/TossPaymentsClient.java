@@ -1,6 +1,5 @@
-package com.early_express.payment_service.domain.payment.domain.client;
+package com.early_express.payment_service.domain.payment.infrastructure.client.toss;
 
-import com.early_express.payment_service.domain.payment.infrastructure.client.toss.TossPaymentsClientConfig;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelRequest;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossCancelResponse;
 import com.early_express.payment_service.domain.payment.infrastructure.client.toss.dto.TossPaymentVerifyResponse;

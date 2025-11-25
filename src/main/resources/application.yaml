@@ -62,6 +62,14 @@ spring:
     listener:
       ack-mode: manual  # 수동 승인 모드 (메시지 처리 보장)
       concurrency: 3  # 동시 처리 리스너 수
+    # 토픽 설정 (토픽 분리 패턴)
+    topic:
+      # 발행 토픽 (Payment → Order/다른 서비스)
+      payment-refunded: payment-refunded
+      payment-refund-failed: payment-refund-failed
+
+      # 구독 토픽 (Order → Payment)
+      refund-requested: refund-requested
 
 # 토스페이먼츠 설정
 toss:
