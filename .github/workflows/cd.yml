@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: earlyexpress/payment-server
+  IMAGE_NAME: earlyexpress/payment-service
   VERSION: latest
 
 jobs:
