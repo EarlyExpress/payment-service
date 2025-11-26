@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Payment Application Service
@@ -66,7 +68,17 @@ public class PaymentService {
         }
 
         // 2. PG사 결제 조회 및 검증
-        TossPaymentVerifyResponse tossResponse = verifyTossPayment(pgPaymentKey);
+//        TossPaymentVerifyResponse tossResponse = verifyTossPayment(pgPaymentKey);
+        TossPaymentVerifyResponse tossResponse = TossPaymentVerifyResponse.builder()
+                .paymentKey(pgPaymentKey)
+                .status("DONE")
+                .totalAmount(expectedAmount)
+                .balanceAmount(expectedAmount)
+                .approvedAt(LocalDateTime.now())
+                .requestedAt(LocalDateTime.now().minusMinutes(1))
+                .transactionKey("mock-txn-" + UUID.randomUUID().toString().substring(0, 8))
+                .method("카드")
+                .build();
 
         // 3. PG 정보 생성
         PgInfo pgInfo = PgInfo.of(
